@@ -1,0 +1,147 @@
+* {
+	margin: 0;
+	padding: 0;
+	-webkit-box-sizing: border-box;
+	   -moz-box-sizing: border-box;
+	        box-sizing: border-box;
+}
+:root{
+	font-size: 16px;
+}
+.logo{
+	font-size: 2rem;
+	font-weight: bold;
+}
+a{
+	text-decoration: none;
+	color: #000;
+}
+.header{
+	display: flex;
+	-webkit-justify-content: space-between;
+	        justify-content: space-between;
+    -webkit-align-items: center;
+            align-items: center;
+    padding: 30px;
+}
+.navbar{
+    display: flex;
+	-webkit-flex-basis: 60%;
+	        flex-basis: 60%;
+	-webkit-justify-content: space-around;
+	        justify-content: space-around;
+	&__link{
+	    color: orange;		
+	}
+}
+
+.searchBlock{ 
+    &__form{
+		width: 100%;
+		text-align: center;
+    }
+	&__input{
+		background: none;
+		width: 40%;
+		height: 40px;
+		border: 1px solid orange;
+		padding: 10px;
+		-webkit-border-radius: 10px;
+		        border-radius: 10px;
+		margin-right: 10px;
+	}
+	&__btn{ 
+		background: none;
+		height: 40px;
+		border: 1px solid orange;
+		padding: 10px;
+		-webkit-border-radius: 10px;
+		        border-radius: 10px;
+		cursor: pointer;
+	}
+}
+
+.section{
+	padding: 40px 0;
+}
+
+.wrapper{
+	width: 100%;
+	max-width: 1170px;
+	margin: 0 auto;
+	div{
+		// display: none;
+	}
+}
+
+.books{
+	display: grid;
+	grid-template-columns: repeat(4, 1fr);
+	grid-gap: 40px 20px; 
+}
+
+.bookWrapper{
+	padding: 10px 20px 10px 10px;
+}
+
+.book{ 
+	display: flex;
+	-webkit-flex-direction: column;
+	    -ms-flex-direction: column;
+	        flex-direction: column;
+    -webkit-justify-content: space-between;
+            justify-content: space-between;
+	min-height: 430px;
+	&__img{
+		height: 350px;
+		width: 100%;
+		background: linear-gradient(45deg, #eee, #ff0, #eee, #ff0, #eee);
+		margin-bottom: 10px;
+	}
+	&__fav{
+
+	}
+}
+
+.topBook, .favBook{
+	width: 100%;
+	display: flex; 
+	&__img{
+		-webkit-flex-basis: 40%;
+		        flex-basis: 40%;
+		height: 200px;
+		width: 100%;
+		background: linear-gradient(45deg, #eee, #ff0, #eee, #ff0, #eee);
+	}
+	&__text{
+		width: 100%;
+		padding: 20px;
+	}
+	&__name{
+		font-size: 1.2rem;
+		font-weight: bold;
+	}
+	&__author{
+		font-weight: bold;
+	}
+	&__descr{
+		margin: 20px 0;
+	}
+	&__rating{
+		color: red;
+	    margin-bottom: 30px;
+	}
+}
+
+
+
+.footer{
+
+	&__logo{
+		text-align: center;
+		margin-bottom: 20px;
+	}
+	.copyright{
+		text-align: center;
+	}
+}
