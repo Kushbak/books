@@ -6,16 +6,16 @@ let toTop = document.querySelector('#toTop');
 let toGenres = document.querySelector('#toGenres'); 
 let state = [];
 
-let favArray;
-
-if(localStorage.getItem("favoriteBooks") != null){
-	favArray = JSON.parse(localStorage.getItem("favoriteBooks"))
-} else{
+let favArray; 
+console.log(!!localStorage.getItem("favoriteBooks"));
+ 
+if(!localStorage.getItem("favoriteBooks")){
 	localStorage.setItem("favoriteBooks", [])
 	favArray = []
+} else{
+	favArray = JSON.parse(localStorage.getItem("favoriteBooks"))
 }
  
-
 
 
 
@@ -95,8 +95,7 @@ const createModals = (bookId) => {
 		}
 	}) 
  
-    modalBlock.addEventListener('click', (e) => {
-    	console.log(e);
+    modalBlock.addEventListener('click', (e) => { 
         if(e.target === modalBlock){ 
             document.body.style.marginRight = `0px`;
             modalBlock.style.display = 'none';
@@ -109,8 +108,7 @@ const createModals = (bookId) => {
 
 
 // Top 10 books
-const top10Books = (data) => {
-	booksList.style.gridTemplateColumns = 'repeat(1, 1fr)';
+const top10Books = (data) => { 
 	booksList.innerHTML = ''; 
 
 	[...data].sort((a, b) => b.rating - a.rating)
@@ -148,8 +146,7 @@ const top10Books = (data) => {
 
 
 // Favorite books
-const favoriteBooks = (favorites) => {
-	booksList.style.gridTemplateColumns = 'repeat(1, 1fr)';
+const favoriteBooks = (favorites) => { 
 	booksList.innerHTML = ''; 
  	if(favorites.length) {
 	 	favorites.forEach(item => { 
@@ -205,8 +202,7 @@ const favFunction = () => {
 				favArray.push(...newFavBook)
 				button.textContent = 'Unfavorite';
 			}
-		localStorage.setItem('favoriteBooks', JSON.stringify(favArray))
-		console.log(favArray);
+		localStorage.setItem('favoriteBooks', JSON.stringify(favArray)) 
 		})
 	});
 }
