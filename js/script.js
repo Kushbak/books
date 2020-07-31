@@ -1,5 +1,5 @@
 
-let booksList = document.querySelector('.books');
+let booksList = document.querySelector('.books > .wrapper');
 let toMain = document.querySelector('#logo') 
 let toFav = document.querySelector('#toFav');
 let toTop = document.querySelector('#toTop'); 
@@ -36,11 +36,15 @@ const getState = async () => {
 const createBook = (data) => {
 	booksList.style.gridTemplateColumns = 'repeat(4, 1fr)';
 	booksList.innerHTML = ''; 
+
+	let allBooks = document.createElement('div');
+	allBooks.className = 'allBooks'; 
+	booksList.appendChild(allBooks);
  
 	data.forEach(item => {
 		let bookDiv = document.createElement('div');
 		bookDiv.className = 'bookWrapper'; 
-		booksList.appendChild(bookDiv)  
+		allBooks.appendChild(bookDiv)  
 		const book = `
 			<div class="book" data-id="${ item.id }" > 
 				<div class="book__img">
@@ -111,12 +115,16 @@ const createModals = (bookId) => {
 const top10Books = (data) => { 
 	booksList.innerHTML = ''; 
 
+	let topBooks = document.createElement('div');
+	topBooks.className = 'topBooks'; 
+	booksList.appendChild(topBooks);
+
 	[...data].sort((a, b) => b.rating - a.rating)
 		.forEach((item, i) => { 
 			if(i < 5){
 				let bookDiv = document.createElement('div');
 				bookDiv.className = 'bookWrapper'; 
-				booksList.appendChild(bookDiv) 
+				topBooks.appendChild(bookDiv) 
 				const book = ` 
 					<div class="topBook" data-id="${ item.id }">
 						<div class="topBook__img">
@@ -140,6 +148,7 @@ const top10Books = (data) => {
 				})
 			}
 	}) 
+	favFunction()
 }
 
 
@@ -148,11 +157,16 @@ const top10Books = (data) => {
 // Favorite books
 const favoriteBooks = (favorites) => { 
 	booksList.innerHTML = ''; 
+
+	let favBooks = document.createElement('div');
+	favBooks.className = 'favBooks'; 
+	booksList.appendChild(favBooks) 
+
  	if(favorites.length) {
 	 	favorites.forEach(item => { 
 			let bookDiv = document.createElement('div');
 			bookDiv.className = 'bookWrapper'; 
-			booksList.appendChild(bookDiv) 
+			favBooks.appendChild(bookDiv) 
 			const book = ` 
 				<div class="favBook" data-id="${ item.id }">
 					<div class="favBook__img">
@@ -163,7 +177,7 @@ const favoriteBooks = (favorites) => {
 						<p class="favBook__author">${ item.author }</p>
 						<p class="favBook__descr">${ item.shortDescr }</p>
 						<p class="favBook__rating">Rating: ${ item.rating }</p>
-						<button class="topBook__fav" data-toFav="${ item.id }">${ favArray.some(fav => fav.id === item.id) ? 'Unfavorite' : 'Favorite' }</button>
+						<button class="favBook__fav" data-toFav="${ item.id }">${ favArray.some(fav => fav.id === item.id) ? 'Unfavorite' : 'Favorite' }</button>
 					</div>
 				</div>`;
 
@@ -171,13 +185,14 @@ const favoriteBooks = (favorites) => {
 			let btn = bookDiv.querySelector('.favBook__fav');
 			bookDiv.addEventListener('click', (e) => {
 				if(e.target !== btn){
-					createModals(item.id)
-				} 
+					createModals(item.id) 
+				}  
 			})  
 		})
 	} else{
 		booksList.innerHTML = 'Список пуст(('; 
 	}
+	favFunction()
 }
 
 
@@ -188,6 +203,7 @@ const favFunction = () => {
 	document.querySelectorAll('button[data-toFav]').forEach(button => {
 		button.addEventListener('click', () => {
 			let id = button.getAttribute('data-toFav') 
+			console.log(button);
 			if(favArray.length){
 				if (!favArray.some(item => item.id === +id)) { 
 					let newFavBook = state.filter(item => item.id === +id)
