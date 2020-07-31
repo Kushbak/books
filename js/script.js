@@ -8,7 +8,7 @@ let state = [];
 
 let favArray;
 
-if(JSON.parse(localStorage.getItem("favoriteBooks")) != null){
+if(localStorage.getItem("favoriteBooks") != null){
 	favArray = JSON.parse(localStorage.getItem("favoriteBooks"))
 } else{
 	localStorage.setItem("favoriteBooks", [])
