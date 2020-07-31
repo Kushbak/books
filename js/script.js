@@ -8,10 +8,10 @@ let state = [];
 
 let favArray;
 
-if(JSON.parse(localStorage.getItem("favorite")) != null){
-	favArray = JSON.parse(localStorage.getItem("favorite"))
+if(JSON.parse(localStorage.getItem("favoriteBooks")) != null){
+	favArray = JSON.parse(localStorage.getItem("favoriteBooks"))
 } else{
-	localStorage.setItem("favorite", [])
+	localStorage.setItem("favoriteBooks", [])
 	favArray = []
 }
  
@@ -205,7 +205,7 @@ const favFunction = () => {
 				favArray.push(...newFavBook)
 				button.textContent = 'Unfavorite';
 			}
-		localStorage.setItem('favorite', JSON.stringify(favArray))
+		localStorage.setItem('favoriteBooks', JSON.stringify(favArray))
 		console.log(favArray);
 		})
 	});
