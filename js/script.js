@@ -21,7 +21,7 @@ if(!localStorage.getItem("favoriteBooks")){
 
 // Getting books from api
 const getState = async () => {
-	let response = await fetch('https://demo7290492.mockable.io/');
+	let response = await fetch('https://demo7290492.mockable.io/books');
 	if(response.ok){
 		return await response.json();  
 	} else {
